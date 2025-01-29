@@ -6,7 +6,7 @@
 /*   By: pahernan <pahernan@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 08:36:32 by pahernan          #+#    #+#             */
-/*   Updated: 2025/01/29 11:41:23 by pahernan         ###   ########.fr       */
+/*   Updated: 2025/01/29 12:14:22 by pahernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,25 @@ void	ft_putstr (char *s)
 		i++;
 	}
 }
+void	ft_putnbr(int nb)
+{
+	if (nb == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		return ;
+	}
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb >= 10)
+	{
+		ft_putnbr(nb / 10);
+		nb = nb % 10;
+	}
+	ft_putchar (nb + '0');
+}
 
 void ft_printf (char *b, ...)
 {
@@ -81,6 +100,8 @@ ft_putchar(va_arg(args, int));
 case 2:
 ft_putstr(va_arg(args, char *));
 	break;
+case 5:
+ft_putnbr(va_arg(args, int));
 default:
 	break;
 }
@@ -93,5 +114,7 @@ int main (void)
 	ft_printf("%s", "ch");
 	ft_printf("%c", ' ');
 	ft_printf("%c", 'c');
+	ft_printf("%c", ' ');
+	ft_printf("%i", 44);
 
 }

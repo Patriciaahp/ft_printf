@@ -6,7 +6,7 @@
 /*   By: pahernan <pahernan@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 08:36:32 by pahernan          #+#    #+#             */
-/*   Updated: 2025/01/29 11:24:49 by pahernan         ###   ########.fr       */
+/*   Updated: 2025/01/29 11:41:23 by pahernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 	i = 0;
 
-		if (s1[i] == '\0' || s2[i] == '\0' || !(s1[i] == s2[i]))
-		{
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		}
-		i++;
-	return (0);
+  while (s1[i] && s2[i] && s1[i] == s2[i])
+    {
+        i++;
+    }
+    return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
 int ft_to_string (const char *str)
@@ -57,6 +56,18 @@ void	ft_putchar (char c)
 	write(1, &c, 1);
 }
 
+void	ft_putstr (char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+}
+
 void ft_printf (char *b, ...)
 {
 	int type = ft_to_string(b);
@@ -68,7 +79,7 @@ case 1:
 ft_putchar(va_arg(args, int));
 	break;
 case 2:
-
+ft_putstr(va_arg(args, char *));
 	break;
 default:
 	break;
@@ -78,7 +89,9 @@ va_end(args);
 }
 
 int main (void)
-{
+{	
+	ft_printf("%s", "ch");
+	ft_printf("%c", ' ');
 	ft_printf("%c", 'c');
 
 }

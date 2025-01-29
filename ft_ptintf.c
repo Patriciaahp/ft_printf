@@ -6,12 +6,13 @@
 /*   By: pahernan <pahernan@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 08:36:32 by pahernan          #+#    #+#             */
-/*   Updated: 2025/01/29 09:36:00 by pahernan         ###   ########.fr       */
+/*   Updated: 2025/01/29 11:24:49 by pahernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include <unistd.h>
+#include <stdarg.h>
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
@@ -45,31 +46,39 @@ if (ft_strcmp(str, "%c") == 0)
 		return 7;
 	else if (ft_strcmp(str, "%X") == 0)
 		return 8;
+		else if (ft_strcmp(str, "%%") == 0)
+		return 9;
 	else
 		return 0;
 }
 
-void ft_putchar (char c)
+void	ft_putchar (char c)
 {
 	write(1, &c, 1);
 }
 
-void ft_printf (char *b, int c)
+void ft_printf (char *b, ...)
 {
 	int type = ft_to_string(b);
-
+	va_list args;
+	va_start(args, b);
 switch (type)
 {
 case 1:
-ft_putchar(c);
+ft_putchar(va_arg(args, int));
 	break;
+case 2:
 
+	break;
 default:
 	break;
 }
+
+va_end(args);
 }
 
 int main (void)
 {
 	ft_printf("%c", 'c');
+
 }

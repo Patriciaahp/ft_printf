@@ -6,7 +6,7 @@
 /*   By: pahernan <pahernan@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 08:36:32 by pahernan          #+#    #+#             */
-/*   Updated: 2025/02/12 11:09:11 by pahernan         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:51:27 by pahernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,15 @@ void	ft_putnbr(int nb)
 	ft_putchar (nb + '0');
 }
 
-void ft_printf (char *b, ...)
+int ft_printf (char *b, ...)
 {
 	int	i;
 	int	type;
+	int	size;
 	
 	i = 0;
-	
+	type = 0;
+	size = 0;
 	while (b[i])
 	{
 		if (b[i] == '%')
@@ -106,6 +108,8 @@ void ft_printf (char *b, ...)
 			ft_putchar(b[i]);
 			i++;
 		}
+
+		return size;
 	}
 	
 	
@@ -136,20 +140,20 @@ va_end(args);
 
 int main (void)
 {	
-	ft_printf("%s", "ch");
-	ft_printf("%c", ' ');
-	ft_printf("%c", 'c');
-	ft_printf("%c", ' ');
-	ft_printf("%i", 44);
-	ft_printf("%c", ' ');
-	ft_printf("hola %s %c", "ch", 'c');
+//	ft_printf("%s", "ch");
+//	ft_printf("%c", ' ');
+//	ft_printf("%c", 'c');
+//	ft_printf("%c", ' ');
+//	ft_printf("%i", 44);
+//	ft_printf("%c", ' ');
+	ft_printf("hola %s", "ch");
 	printf("\n");
-	printf("%s", "ch");
-	printf("%c", ' ');
-	printf("%c", 'c');
-	printf("%c", ' ');
-	printf("%i", 44);
-	printf("%c", ' ');
+//	printf("%s", "ch");
+//	printf("%c", ' ');
+//	printf("%c", 'c');
+//	printf("%c", ' ');
+//	printf("%i", 44);
+//	printf("%c", ' ');
 	printf("\n");
 	printf("hola %s %c", "ch", 'c');
 }

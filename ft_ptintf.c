@@ -6,7 +6,7 @@
 /*   By: pahernan <pahernan@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 08:36:32 by pahernan          #+#    #+#             */
-/*   Updated: 2025/01/29 12:14:22 by pahernan         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:09:11 by pahernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,31 @@ void	ft_putnbr(int nb)
 
 void ft_printf (char *b, ...)
 {
-	int type = ft_to_string(b);
+	int	i;
+	int	type;
+	
+	i = 0;
+	
+	while (b[i])
+	{
+		if (b[i] == '%')
+		{
+			type = ft_to_string(b);
+			i++;
+		}
+		else 
+		{
+			ft_putchar(b[i]);
+			i++;
+		}
+	}
+	
+	
 	va_list args;
 	va_start(args, b);
 switch (type)
 {
+
 case 1:
 ft_putchar(va_arg(args, int));
 	break;
@@ -104,10 +124,15 @@ case 5:
 ft_putnbr(va_arg(args, int));
 default:
 	break;
+	case 9:
+	ft_putchar(va_arg(args, int));
+	break;
 }
 
 va_end(args);
 }
+
+#include <stdio.h>
 
 int main (void)
 {	
@@ -116,5 +141,15 @@ int main (void)
 	ft_printf("%c", 'c');
 	ft_printf("%c", ' ');
 	ft_printf("%i", 44);
-
+	ft_printf("%c", ' ');
+	ft_printf("hola %s %c", "ch", 'c');
+	printf("\n");
+	printf("%s", "ch");
+	printf("%c", ' ');
+	printf("%c", 'c');
+	printf("%c", ' ');
+	printf("%i", 44);
+	printf("%c", ' ');
+	printf("\n");
+	printf("hola %s %c", "ch", 'c');
 }

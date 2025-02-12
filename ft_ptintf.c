@@ -6,7 +6,7 @@
 /*   By: pahernan <pahernan@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 08:36:32 by pahernan          #+#    #+#             */
-/*   Updated: 2025/02/12 11:51:27 by pahernan         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:35:01 by pahernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ int ft_printf (char *b, ...)
 	int	i;
 	int	type;
 	int	size;
+	va_list args;
+	va_start(args, b);
 	
 	i = 0;
 	type = 0;
@@ -108,13 +110,9 @@ int ft_printf (char *b, ...)
 			ft_putchar(b[i]);
 			i++;
 		}
-
+	
 		return size;
 	}
-	
-	
-	va_list args;
-	va_start(args, b);
 switch (type)
 {
 

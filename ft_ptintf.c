@@ -86,16 +86,32 @@ void ft_putnbr(int nb)
 	ft_putchar(nb + '0');
 }
 
+void ft_unsignedputnbr(unsigned int nb)
+{
+	if (nb >= 10)
+	{
+		ft_unsignedputnbr(nb / 10);
+		nb = nb % 10;
+	}
+	ft_putchar(nb + '0');
+}
+
+void ft_putpointer(char c)
+{
+
+	ft_putstr("0x");
+
+
+}
+
 int ft_printf(char *str, ...)
 {
 	int i;
-	int type;
 	int size;
 	va_list args;
 	va_start(args, str);
 
 	i = 0;
-	type = 0;
 	size = 0;
 	while (str[i])
 	{
@@ -117,6 +133,22 @@ int ft_printf(char *str, ...)
 				break;
 			case '%':
 				ft_putchar('%');
+				size++;
+				break;
+			case 'u':
+				ft_unsignedputnbr(va_arg(args, unsigned int));
+				size++;
+				break;
+				case 'x':
+				ft_unsignedputnbr(va_arg(args, unsigned int));
+				size++;
+				break;
+				case 'X':
+				ft_unsignedputnbr(va_arg(args, unsigned int));
+				size++;
+				break;
+				case 'p':
+				ft_putpointer(va_arg(args, unsigned int));
 				size++;
 				break;
 			default:
@@ -142,6 +174,8 @@ int ft_printf(char *str, ...)
 
 int main(void)
 {
-	ft_printf("Hola %s %c %i %%\n", "mundo", '!', 42);
-	printf("Hola %s %c %i %%\n", "mundo", '!', 42);
+	int num = 42;
+    int *ptr = &num;
+	ft_printf("Hola %s %c %i %% %u\n", "mundo", '!', -42, -42);
+	printf("Hola %s %c %i %% %u %p\n", "mundo", '!', -42, -42, ptr);
 }

@@ -83,7 +83,7 @@ void ft_putpointer(void *ptr)
 	ft_puthex(n, "0123456789abcdef");
 }
 
-int ft_printf(char *str, ...)
+int ft_printf(const char *str, ...)
 {
 	int i;
 	int size;

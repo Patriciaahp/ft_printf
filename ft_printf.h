@@ -4,6 +4,6 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-int ft_printf(char *str, ...);
+int ft_printf(const char *str, ...);
 
 #endif

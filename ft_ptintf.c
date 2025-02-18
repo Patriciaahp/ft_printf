@@ -13,43 +13,6 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-/*int ft_strcmp(const char *s1, const char *s2)
-{
-	unsigned int i;
-
-	i = 0;
-
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-	{
-		i++;
-	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
-int ft_to_string(const char *str)
-{
-	if (ft_strcmp(str, "%c") == 0)
-		return 1;
-	else if (ft_strcmp(str, "%s") == 0)
-		return 2;
-	else if (ft_strcmp(str, "%p") == 0)
-		return 3;
-	else if (ft_strcmp(str, "%d") == 0)
-		return 4;
-	else if (ft_strcmp(str, "%i") == 0)
-		return 5;
-	else if (ft_strcmp(str, "%u") == 0)
-		return 6;
-	else if (ft_strcmp(str, "%x") == 0)
-		return 7;
-	else if (ft_strcmp(str, "%X") == 0)
-		return 8;
-	else if (ft_strcmp(str, "%%") == 0)
-		return 9;
-	else
-		return 0;
-}*/
-
 void ft_putchar(char c)
 {
 	write(1, &c, 1);
@@ -187,7 +150,7 @@ int ft_printf(char *str, ...)
 	return (size);
 }
 
-#include <stdio.h>
+/*#include <stdio.h>
 
 int main(void)
 {
@@ -196,4 +159,4 @@ int main(void)
 
 	ft_printf("Hola %s %c %i %% %u %p %X %x\n", "ft_mundo", '!', -42, -42, ptr, num, num);
 	printf("Hola %s %c %i %% %u %p %X %x\n", "mundo", '!', -42, -42, ptr, num, num);
-}
+}*/

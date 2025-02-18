@@ -96,12 +96,29 @@ void ft_unsignedputnbr(unsigned int nb)
 	ft_putchar(nb + '0');
 }
 
-void ft_putpointer(char c)
+void ft_puthex(unsigned long n, char *hexChars)
 {
 
+	if (n >= 16)
+	{
+		ft_puthex(n / 16, hexChars);
+		n = n % 16;
+	}
+
+	ft_putchar(hexChars[n]);
+}
+
+void ft_putpointer(void *ptr)
+{
+	unsigned long n;
+	n = (unsigned long)ptr;
 	ft_putstr("0x");
-
-
+	if (n == 0)
+	{
+		ft_putchar('0');
+		return;
+	}
+	ft_puthex(n, "0123456789abcdef");
 }
 
 int ft_printf(char *str, ...)
@@ -139,16 +156,16 @@ int ft_printf(char *str, ...)
 				ft_unsignedputnbr(va_arg(args, unsigned int));
 				size++;
 				break;
-				case 'x':
-				ft_unsignedputnbr(va_arg(args, unsigned int));
+			case 'x':
+				ft_puthex(va_arg(args, unsigned int), "0123456789abcdef");
 				size++;
 				break;
-				case 'X':
-				ft_unsignedputnbr(va_arg(args, unsigned int));
+			case 'X':
+				ft_puthex(va_arg(args, unsigned int), "0123456789ABCDEF");
 				size++;
 				break;
-				case 'p':
-				ft_putpointer(va_arg(args, unsigned int));
+			case 'p':
+				ft_putpointer(va_arg(args, void *));
 				size++;
 				break;
 			default:
@@ -175,7 +192,8 @@ int ft_printf(char *str, ...)
 int main(void)
 {
 	int num = 42;
-    int *ptr = &num;
-	ft_printf("Hola %s %c %i %% %u\n", "mundo", '!', -42, -42);
-	printf("Hola %s %c %i %% %u %p\n", "mundo", '!', -42, -42, ptr);
+	int *ptr = &num;
+
+	ft_printf("Hola %s %c %i %% %u %p %X %x\n", "ft_mundo", '!', -42, -42, ptr, num, num);
+	printf("Hola %s %c %i %% %u %p %X %x\n", "mundo", '!', -42, -42, ptr, num, num);
 }

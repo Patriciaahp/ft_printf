@@ -12,17 +12,23 @@
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c, int *size)
+void ft_putchar(char c, int *size)
 {
 	write(1, &c, 1);
 	(*size)++;
 }
 
-void	ft_putstr(char *s, int *size)
+void ft_putstr(char *s, int *size)
 {
-	int	i;
+	int i;
 
 	i = 0;
+	if (!s)
+	{
+		write(1, "(null)", 6);
+		*size += 6;
+		return ;
+	}
 	while (s[i])
 	{
 		write(1, &s[i], 1);
@@ -34,37 +40,37 @@ void	ft_putstr(char *s, int *size)
 void ft_types(va_list args, char type, int *size)
 {
 	if (type == 'c')
-	ft_putchar(va_arg(args, int), size);
-else if (type == 's')
-	ft_putstr(va_arg(args, char *), size);
-else if (type == 'i')
-	ft_putnbr(va_arg(args, int), size);
-else if (type == 'd')
-	ft_putnbr(va_arg(args, int), size);
-else if (type == '%')
-	ft_putchar('%', size);
-else if (type == 'u')
-	ft_unsignedputnbr(va_arg(args, unsigned int), size);
-else if (type == 'x')
-	ft_puthex(va_arg(args, unsigned int),
-		"0123456789abcdef", size);
-else if (type == 'X')
-	ft_puthex(va_arg(args, unsigned int),
-		"0123456789ABCDEF", size);
-else if (type == 'p')
-	ft_putpointer(va_arg(args, void *), size);
-else
-{
-	ft_putchar('%', size);
-	ft_putchar(type, size);
-}
+		ft_putchar(va_arg(args, int), size);
+	else if (type == 's')
+		ft_putstr(va_arg(args, char *), size);
+	else if (type == 'i')
+		ft_putnbr(va_arg(args, int), size);
+	else if (type == 'd')
+		ft_putnbr(va_arg(args, int), size);
+	else if (type == '%')
+		ft_putchar('%', size);
+	else if (type == 'u')
+		ft_unsignedputnbr(va_arg(args, unsigned int), size);
+	else if (type == 'x')
+		ft_puthex(va_arg(args, unsigned int),
+				  "0123456789abcdef", size);
+	else if (type == 'X')
+		ft_puthex(va_arg(args, unsigned int),
+				  "0123456789ABCDEF", size);
+	else if (type == 'p')
+		ft_putpointer(va_arg(args, void *), size);
+	else
+	{
+		ft_putchar('%', size);
+		ft_putchar(type, size);
+	}
 }
 
-int	ft_printf(const char *str, ...)
+int ft_printf(const char *str, ...)
 {
-	int			i;
-	int			size;
-	va_list		args;
+	int i;
+	int size;
+	va_list args;
 
 	va_start(args, str);
 	i = 0;

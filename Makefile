@@ -3,7 +3,7 @@ AR=ar rcs
 CFLAGS=-Wall -Werror -Wextra
 RM=rm -f
 
-FILES = ft_printf.c
+FILES = ft_printf.c ft_putn.c
 
 OBJS=$(FILES:.c=.o)
 

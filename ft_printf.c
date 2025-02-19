@@ -6,7 +6,7 @@
 /*   By: pahernan <pahernan@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 08:36:32 by pahernan          #+#    #+#             */
-/*   Updated: 2025/02/19 12:16:44 by pahernan         ###   ########.fr       */
+/*   Updated: 2025/02/19 12:31:43 by pahernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,37 +29,6 @@ void	ft_putstr(char *s, int *size)
 		i++;
 		(*size)++;
 	}
-}
-
-void	ft_putnbr(int nb, int *size)
-{
-	if (nb == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		*size += 11;
-		return ;
-	}
-	if (nb < 0)
-	{
-		ft_putchar('-', size);
-		nb = -nb;
-	}
-	if (nb >= 10)
-	{
-		ft_putnbr(nb / 10, size);
-		nb = nb % 10;
-	}
-	ft_putchar(nb + '0', size);
-}
-
-void	ft_unsignedputnbr(unsigned int nb, int *size)
-{
-	if (nb >= 10)
-	{
-		ft_unsignedputnbr(nb / 10, size);
-		nb = nb % 10;
-	}
-	ft_putchar(nb + '0', size);
 }
 
 void	ft_puthex(unsigned long n, char *hexChars, int *size)
@@ -114,9 +83,11 @@ int	ft_printf(const char *str, ...)
 			else if (str[i] == 'u')
 				ft_unsignedputnbr(va_arg(args, unsigned int), &size);
 			else if (str[i] == 'x')
-				ft_puthex(va_arg(args, unsigned int), "0123456789abcdef", &size);
+				ft_puthex(va_arg(args, unsigned int),
+					"0123456789abcdef", &size);
 			else if (str[i] == 'X')
-				ft_puthex(va_arg(args, unsigned int), "0123456789ABCDEF", &size);
+				ft_puthex(va_arg(args, unsigned int),
+					"0123456789ABCDEF", &size);
 			else if (str[i] == 'p')
 				ft_putpointer(va_arg(args, void *), &size);
 			else
@@ -126,9 +97,7 @@ int	ft_printf(const char *str, ...)
 			}
 		}
 		else
-		{
 			ft_putchar(str[i], &size);
-		}
 		i++;
 	}
 	va_end(args);

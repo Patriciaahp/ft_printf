@@ -6,7 +6,7 @@
 /*   By: pahernan <pahernan@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 12:25:32 by pahernan          #+#    #+#             */
-/*   Updated: 2025/02/19 12:27:06 by pahernan         ###   ########.fr       */
+/*   Updated: 2025/02/19 12:55:29 by pahernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,30 @@ void	ft_unsignedputnbr(unsigned int nb, int *size)
 		nb = nb % 10;
 	}
 	ft_putchar(nb + '0', size);
+}
+
+
+void	ft_puthex(unsigned long n, char *hexChars, int *size)
+{
+	if (n >= 16)
+	{
+		ft_puthex(n / 16, hexChars, size);
+		n = n % 16;
+	}
+	ft_putchar(hexChars[n], size);
+}
+
+void	ft_putpointer(void *ptr, int *size)
+{
+	unsigned long	n;
+
+	n = (unsigned long)ptr;
+	if (n == 0)
+	{
+		write(1, "(nil)", 5);
+		*size += 5;
+		return ;
+	}
+	ft_putstr("0x", size);
+	ft_puthex(n, "0123456789abcdef", size);
 }

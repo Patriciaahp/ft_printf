@@ -6,7 +6,7 @@
 /*   By: pahernan <pahernan@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 08:36:32 by pahernan          #+#    #+#             */
-/*   Updated: 2025/02/19 12:02:18 by pahernan         ###   ########.fr       */
+/*   Updated: 2025/02/19 12:16:44 by pahernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	ft_putpointer(void *ptr, int *size)
 	if (n == 0)
 	{
 		write(1, "(nil)", 5);
+		*size += 5;
 		return ;
 	}
 	ft_putstr("0x", size);

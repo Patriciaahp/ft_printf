@@ -6,7 +6,7 @@
 /*   By: pahernan <pahernan@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 12:25:32 by pahernan          #+#    #+#             */
-/*   Updated: 2025/02/19 13:00:07 by pahernan         ###   ########.fr       */
+/*   Updated: 2025/02/20 09:50:46 by pahernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	ft_unsignedputnbr(unsigned int nb, int *size)
 	}
 	ft_putchar(nb + '0', size);
 }
-
 
 void	ft_puthex(unsigned long n, char *hexChars, int *size)
 {
